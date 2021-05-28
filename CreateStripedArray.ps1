@@ -1,9 +1,9 @@
 # Simple Powershell script to configure local nvme drives into raid 0 array.
 # !this has to be idempotent!
 
-$storagepoolname = localNvmePool
-$virtualdiskname = localNvmeVirtualDisk
-$fileSystemLabel = LocalFastTemp
+$storagepoolname = "localNvmePool"
+$virtualdiskname = "localNvmeVirtualDisk"
+$fileSystemLabel = "LocalFastTemp"
 
 # assume if an e: drive exists, no need to create again. 
 If(!( Test-Path -Path 'e:\'))
@@ -18,5 +18,5 @@ New-StoragePool -FriendlyName $storagepoolname -StorageSubSystemFriendlyName 'Wi
 New-VirtualDisk -StoragePoolFriendlyName $storagepoolname -FriendlyName $virtualdiskname -ResiliencySettingName Simple -UseMaximumSize
 
 # parition, format, and initialize the striped disks
-Get-VirtualDisk -FriendlyName StoragePoolDisk | Get-Disk | Initialize-Disk -PassThru | New-Partition -AssignDriveLetter -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel $fileSystemLabel
+Get-VirtualDisk -FriendlyName $virtualdiskname | Get-Disk | Initialize-Disk -PassThru | New-Partition -AssignDriveLetter -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel $fileSystemLabel
 }
