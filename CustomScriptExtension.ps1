@@ -4,7 +4,7 @@
 
 
 $pathOfCurrentScript = Split-Path $MyInvocation.MyCommand.Path -Parent
-$pathOfCreateScript = "$pathOfCurrentScript\CreateStripedLocalDisks.ps1"
+$pathOfCreateScript = "$pathOfCurrentScript\CreateStripedArray.ps1"
 
 # create Windows Scheduled Task to run that script at VM startup
 
