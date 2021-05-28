@@ -1,6 +1,6 @@
 # this PowerShell script is downloaded to VM by Custom Script Extension.  It's
 # purpose is to create a Windows Scheduled Task to run a 2nd PowerShell script 
-# Downloaded but the Custom Script Extension
+# also downloaded by the Custom Script Extension
 
 
 $pathOfCurrentScript = Split-Path $MyInvocation.MyCommand.Path -Parent
